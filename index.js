@@ -61,9 +61,7 @@ function hitMe() {
     }
 }
 
-function haseveryoneplayed() {
-    return Player1.cards.length != 0 && Player2.cards.length != 0
-}
+
 function hasEveryoneFinished() {
     return Player1.finished && Player2.finished
 }
@@ -74,7 +72,7 @@ function hasEveryoneFinished() {
 function Stay() {
     currentPlayer.finished = true
     renderGame()
-    if (haseveryoneplayed()) {
+    if (hasEveryoneFinished()) {
         if (Player1.sum > Player2.sum) {
             theWinnerIs(Player1)
         } else {
