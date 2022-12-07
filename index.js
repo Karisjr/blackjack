@@ -15,7 +15,8 @@ let Player1 = {
     sum: 0,
     hasBlackjack: false,
     isAlive: true,
-    score: 0
+    score: 0,
+    finished: false
 }
 
 let Player2 = {
@@ -24,7 +25,8 @@ let Player2 = {
     sum: 0,
     hasBlackjack: false,
     isAlive: true,
-    score: 0
+    score: 0,
+    finished: false
 }
 
 function getRandomCard() {
@@ -61,13 +63,17 @@ function hitMe() {
 
 function haseveryoneplayed() {
     return Player1.cards.length != 0 && Player2.cards.length != 0
-
+}
+function hasEveryoneFinished() {
+    return Player1.finished && Player2.finished
 }
 
     //haseveryoneplayed - check if cards are empty for each player? if true, then check which sum is greater 
     //and if not then...
 
 function Stay() {
+    currentPlayer.finished = true
+    renderGame()
     if (haseveryoneplayed()) {
         if (Player1.sum > Player2.sum) {
             theWinnerIs(Player1)
@@ -77,7 +83,6 @@ function Stay() {
         return
     }
     switchPlayer()
-
 }
 
 function renderPlayer(player) {
@@ -95,20 +100,23 @@ function renderPlayer(player) {
 function renderGame() {
     renderPlayer(Player1) 
     renderPlayer(Player2)
-    if (currentPlayer.sum <= 20) {
-        message = "Hit or Stay?"
-        varclass = "base-style"
-    } else if (currentPlayer.sum === 21) { // '===' means exactly, if the sum total matches 21
+    if (currentPlayer.sum === 21) { // '===' means exactly, if the sum total matches 21
         currentPlayer.hasBlackjack = true;
         message = "Blackjack!"
         varclass = "blackjack-style"
         theWinnerIs(currentPlayer)
-    } else {
+    } else if (currentPlayer.sum > 21) {
         currentPlayer.isAlive = false
         varclass = "bust-style"
         message = "BUST!"
         let otherPlayer = currentPlayer == Player1 ? Player2 : Player1
         theWinnerIs(otherPlayer)
+    } else if (hasEveryoneFinished()) {
+        message = "Winner by points!"
+        varclass = "base-style"
+    } else {
+        message = "Hit or Stay?"
+        varclass = "base-style"
     }
     messageEl.innerHTML = '<p class="'+ varclass +'">' + message + '</p>'
 }
@@ -128,11 +136,21 @@ function Reset() {
     startBlackjack()
 }
 
+function restartGame() {
+    Player1.score = 0
+    Player2.score = 0
+
+    document.getElementById("overlay").style.display = "none";
+    Reset()
+    renderScores()
+}
+
 function resetPlayer(player) {
     player.cards = []
     player.sum = 0
     player.hasBlackjack = false
     player.isAlive = true
+    player.finished = false
     drawMessage()
 }
 
@@ -155,10 +173,15 @@ async function theWinnerIs(player) { //await only works if you put 'async' on yo
     drawMessage(player.name + ' Won!')
     //display banner for winner 
 
-    renderScores()
-    document.getElementById("player-2").classList.remove("active-player")
-    await new Promise(resolve => setTimeout(resolve, 5000))
-    Reset()
+
+    if (player.score >= 5) {
+        finishGame(player)
+    } else {
+        renderScores()
+        document.getElementById("player-2").classList.remove("active-player")
+        await new Promise(resolve => setTimeout(resolve, 5000))
+        Reset()
+    }
 }
 
 function drawMessage(message) {
@@ -170,3 +193,12 @@ function drawMessage(message) {
     // banner.append(h1)
     // state.gameElement.append(banner)
 }
+
+function finishGame(winner) {
+    document.getElementById("newCard").disabled = true;
+    document.getElementById("stayNextPlayersTurn").disabled = true;
+    let overlayEl = document.getElementById("overlay")
+    overlayEl.style.display = "block";
+    overlayEl.innerHTML = '<p class="overlay-text">The Winner is ' + winner.name + ' with ' + winner.score + ' points</p>'
+}
+
