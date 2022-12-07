@@ -1,0 +1,163 @@
+body {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background-color: darkgreen;
+    color: whitesmoke;
+    text-align: center;
+    font-weight: bold;
+}
+
+h1 {
+    color: goldenrod;
+}
+
+#game-rules {
+    font-style: italic;
+    font-size: smaller;
+}
+
+#message-el {
+    font-style: italic;
+    font-size: small;
+}
+
+#winner-banner {
+    font-size: large;
+}
+
+#message-banner {
+    font-style: italic;
+    font-size: large;
+}
+
+button {
+    color: #016f32;
+    width: 150px;
+    background: goldenrod;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-weight: bold;
+    border: none;
+    border-radius: 2px;
+    margin-bottom: 2px;
+    margin-top: 2px;
+}
+
+#players-container {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    width: 700px;
+    height: 350px;
+    margin: auto;
+    padding: 20px;
+}
+
+#player-1, #player-2 {
+    border: solid rgb(211, 211, 211) 2px;
+    width: 215px;
+    border-radius: 15%;
+    padding-right: 50px;
+    padding-left: 50px;
+}
+
+/* #score-count {
+    text-align: center;
+    width: 900px;
+    overflow: hidden;
+    margin: auto;
+    padding: 2%;
+    border-color: aliceblue;
+} */
+
+.player1-score, .player-2-score {
+    display: inline-block;
+    border-radius: 10%;
+    margin: 5px;
+    width: 270px;
+    text-align: center;
+}
+
+#player2-score-tracker, #player1-score-tracker {
+    background-color: goldenrod;
+    border: solid rgb(211, 211, 211) 1px;
+    text-align: center;
+    width: 25px;
+    height: 25px;
+    margin-left: 120px;
+}
+
+.currentPlayer {
+    border-color: aqua;
+}
+
+.blackjack-style {
+    color: rgb(251, 255, 0);
+    animation: bubbles-rise 4s
+}
+
+.bust-style {
+    color: red;
+    height: 40px;
+    position: relative;
+    -webkit-animation:fontbulger 2s infinite;
+    -moz-animation:fontbulger 2s infinite;
+    -o-animation:fontbulger 2s infinite;
+    animation:fontbulger 2s infinite;
+}
+
+.active-player {
+    background-color: #016f32;
+}
+
+@keyframes bubbles-rise {
+    100% {
+        -webkit-transform: translateY(-100px) scale(0.5);
+        transform: translateY(-100px) scale(0.5);
+        opacity: 0;
+        -webkit-animation-timing-function: ease-in;
+        animation-timing-function: ease-in;
+    }
+}
+
+@-webkit-keyframes fontbulger  {
+    0%, 100% {
+       font-size:20px;
+    }
+    
+    50% {
+       font-size:30px;
+    }
+ 
+ }
+ 
+ @-moz-keyframes fontbulger  {
+    0%, 100% {
+       font-size:20px;
+    }
+    
+    50% {
+       font-size:30px;
+    }
+ 
+ }
+ 
+ @-o-keyframes fontbulger  {
+    0%, 100% {
+       font-size:20px;
+    }
+    
+    50% {
+       font-size:30px;
+    }
+ 
+ }
+ 
+ @keyframes fontbulger  {
+    0%, 100% {
+       font-size:20px;
+    }
+    
+    50% {
+       font-size:30px;
+    }
+ }

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Blackjack</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.2.0/css/all.css">
+  </head>
+
+
+  <body>
+    <h1>Blackjack</h1>
+    <p id="game-rules">Game rules: <br>
+      The aim of blackjack is to finish the game with a higher total than that of the other player, without exceeding 21. <br>
+      Going over 21 is commonly known as ‘busting’ and means an automatic loss.<br>
+      Please note there will be a total of 5 games and player 1 will start first.<br><br>
+      START NEW GAME - Reset the field (meaning, scores go back to '0' and you'll begin a new match)
+      <br>
+      HIT - Take another card<br>
+      STAY - stick with the cards you have and it's automatically the other players turn<br><br>
+      Press 'START NEW GAME' to begin - Good luck & Happy playing!</p>
+    <p id="message-el"><i class="fa-regular fa-heart"></i> <i class="fa-solid fa-diamond"></i></p>
+
+    <div id="buttons-container1">
+    <button id="startGame" onclick="startBlackjack()">START NEW GAME</button>
+    </div>
+
+    <div id="players-container">
+      <div id="player-1" class="player-1">
+        <p id="player-1-cards">Player 1</p>
+        <br>
+        <p id="player-1-cards-el">Cards:</p>
+        <p id="player-1-sum-el">Sum:</p>
+      </div>
+      <br>
+      <div id="player-2" class="player-2">
+        <p id="player-2-cards">Player 2</p>
+        <br>
+        <p id="player-2-cards-el">Cards:</p>
+        <p id="player-2-sum-el">Sum:</p>
+      </div>
+  </div>
+
+    <div id="buttons-container2">
+    <button id="newCard" onclick="hitMe()">HIT</button>
+    <button id="stayNextPlayersTurn" onclick="Stay()">STAY</button>
+    <!-- <button id="resetAllStats" onclick="Reset()">RESET</button> -->
+  </div>
+  <br>
+  <div id="winner-banner"><i class="fa-solid fa-dice"></i></div>
+  <br>
+  <div id="message-banner">
+    <i class="fa-regular fa-heart"></i> <i class="fa-solid fa-diamond"></i>
+  </div>
+<br>
+  <div class="score-count">
+    <div class="player1-score">
+        <h3 class="player1-score">Player 1: </h3><p id="player1-score-tracker" class="player-score">0</p>
+    </div>
+    <div class="player-2-score">
+        <h3 class="player-2-score">Player 2: </h3><p id="player2-score-tracker" class="player-score">0</p>
+    </div>
+  </div>
+
+	<script src="index.js"></script>
+  </body>
+</html>
