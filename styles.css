@@ -42,6 +42,19 @@ button {
     margin-top: 2px;
 }
 
+button:hover {
+    background: goldenrod;
+    color: whitesmoke;
+    border-color: whitesmoke; 
+    cursor: pointer;
+}
+
+button:active {
+    background-color: #3e8e41;
+    box-shadow: 0 2px #666;
+    transform: translateY(2px);
+  }
+
 #players-container {
     display: flex;
     justify-content: space-around;
